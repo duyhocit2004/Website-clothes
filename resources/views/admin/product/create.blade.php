@@ -22,9 +22,9 @@
                                     <label class="form-label">Courses category</label>
                                     <select class=" form-input singleSelect">
                                         <option selected disabled>Select category</option>
-                                        @foreach()
+{{--                                        @foreach()--}}
 
-                                        @endforeach
+{{--                                        @endforeach--}}
                                     </select>
                                 </div>
                                 <div class="col-span-full xl:col-auto leading-none">

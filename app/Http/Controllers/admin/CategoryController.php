@@ -3,23 +3,22 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Service\Cate\CategoryService;
 use Illuminate\Http\Request;
 
-use App\Repositories\SizeRepositories;
-
-class SizeController extends Controller
+class CategoryController extends Controller
 {
-    public $size;
-    public function __construct(SizeRepositories $size){
-        $this->size = $size;
+    public $category;
+    public function __construct(CategoryService $category){
+        $this->category = $category;
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $listSize = $this->size->getSize();
-        return view('admin.size.list',compact('listSize'));
+        $category = $this->category->getCategories();
+        return view('admin.category.list',compact('category'));
     }
 
     /**
@@ -27,7 +26,7 @@ class SizeController extends Controller
      */
     public function create()
     {
-        return view('admin.size.create');
+        return view('admin.category.create');
     }
 
     /**
@@ -40,8 +39,8 @@ class SizeController extends Controller
         ],[
             'name.required'=>'Bạn chưa nhập thể loại'
         ]);
-        $this->size->createSize($param);
-        return redirect()->route('Listsize')->with('success','Thêm kích cỡ thành công');
+        $this->category->createCategory($param);
+        return redirect()->route('listcategory')->with('success','Thêm thể loại thành công');
     }
 
     /**
@@ -57,8 +56,8 @@ class SizeController extends Controller
      */
     public function edit(string $id)
     {
-        $size = $this->size->getSizeId($id);
-        return view('admin.size.edit',compact('size'));
+        $list = $this->category->getCategory($id);
+        return view('admin.category.edit',compact('list'));
     }
 
     /**
@@ -71,8 +70,8 @@ class SizeController extends Controller
         ],[
             'name.required'=>'Bạn chưa nhập thể loại'
         ]);
-        $this->size->updateSize($id,$param);
-        return redirect()->route('listsize')->with('success','sửa kích cỡ thành công');
+        $this->category->updateCategory($id,$param);
+        return redirect()->route('listcategory')->with('success','Sửa thể loại thành công');
     }
 
     /**
@@ -80,7 +79,7 @@ class SizeController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->size->deleteSize($id);
-        return redirect()->route('listsize')->with('success','xóa kích cỡ thành công');
+        $this->category->deleteCategory($id);
+        return redirect()->route('listcategory')->with('success','Xóa thể loại thành công');
     }
 }

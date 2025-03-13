@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Repositories\CategoryRepotiores;
+use App\Repositories\CategoryRepositories;
 use App\Repositories\ProductRepositories;
 
 
@@ -13,14 +13,14 @@ class ProductController extends Controller
 {
 
     public $ProductRepositories ;
-    public $categoryRepotioes ;
+    public $CategoryRepositories ;
 
     public function __construct(
         ProductRepositories $ProductRepositories,
-        CategoryRepotiores $categoryRepotioes)
+        CategoryRepositories $CategoryRepositories)
     {
         $this->ProductRepositories = $ProductRepositories;
-        $this->categoryRepotioes = $categoryRepotioes;
+        $this->CategoryRepositories = $CategoryRepositories;
     }
 
     public function index(Request $request)
@@ -34,8 +34,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $listCategory = $this->categoryRepotioes->getAll();
-
+        $listCategory = $this->CategoryRepositories->getAll();
 
         return view('admin.product.create',compact('listCategory'));
     }
@@ -45,7 +44,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

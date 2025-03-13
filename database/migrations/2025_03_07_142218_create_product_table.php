@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('content');
             $table->string('description');
             $table->string('price');
+            $table->string('price_sale')->nullable();
             $table->string('image');
             $table->timestamps();
             $table->softDeletes();

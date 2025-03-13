@@ -1,6 +1,6 @@
 <?php
 
-namespace app\service\category;
+namespace App\Service\Cate;
 
 interface ICategoryService {
     public function getCategories();

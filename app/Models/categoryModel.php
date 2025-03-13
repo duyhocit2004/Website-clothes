@@ -10,7 +10,7 @@ class categoryModel extends Model
     use HasFactory;
 
     protected $table = 'category';
-    protected $fillable = ['id','name','parent_id'];
+    protected $fillable = ['id','name'];
     public function products(){
         return $this->hasOne(productModel::class,'category_id','id');
     }

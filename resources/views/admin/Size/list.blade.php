@@ -13,23 +13,23 @@
                             <thead>
                             <tr>
                                 <th class="!bg-[#FEF6EC] dark:!bg-dark-card-shade py-2">STT</th>
-                                <th class="!bg-[#FEF6EC] dark:!bg-dark-card-shade py-2">Kích cỡ</th>
+                                <th class="!bg-[#FEF6EC] dark:!bg-dark-card-shade py-2">Tên kích cỡ</th>
                                 <th class="!bg-[#FEF6EC] dark:!bg-dark-card-shade py-2">Thao tác</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($listcolor as $index => $color)
+                            @foreach($listSize as $index => $size)
                                 <tr class="d-flex justify-content-center text-center">
                                     <td>{{$index+1}}</td>
-                                    <td>{{$color->name}}</td>
+                                    <td>{{$size->name}}</td>
                                     <td class="display-flex justify-content-center text-center">
                                         <div class="">
-                                            <a href="{{route('editcolor',$color->id)}}" class="btn-icon btn-primary-icon-light size-7">
+                                            <a href="{{route('editsize',$size->id)}}" class="btn-icon btn-primary-icon-light size-7">
                                                 <i class="far fa-edit"></i>
                                             </a>
                                         </div>
                                         <div class="container">
-                                            <form action="{{route('deletecolor',$color->id)}}" method="post">
+                                            <form action="{{route('deletesize',$size->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn-icon btn-danger-icon-light size-7"><i class="fas fa-trash-alt"></i></button>
@@ -41,7 +41,7 @@
                             </tbody>
                         </table>
                     </div>
-                    {{$listcolor->links()}}
+                    {{$listSize->links()}}
                 </div>
             </div>
         </div>
