@@ -8,6 +8,7 @@
             Transform your space to reflect your personality!
         </p>
     </div>
+
     <!-- Customizatin Options -->
     <div data-scrollbar class="p-6 pt-3 divide-y divide-input-border/50 dark:divide-dark-border-four space-y-10">
         <!-- Theme Mode -->
