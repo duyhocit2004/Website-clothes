@@ -13,28 +13,41 @@
                         <table class="container" id="basicDataTable ">
                             <thead>
                             <tr>
-                                <th class="bg-[#B2E8D9]">STT</th>
-                                <th class="bg-[#B2E8D9]">Tên sản phẩm</th>
-                                <th class="bg-[#B2E8D9]">Thể loại</th>
-                                <th class="bg-[#B2E8D9]">Image</th>
-                                <th class="bg-[#B2E8D9]">Giá</th>
-                                <th class="bg-[#B2E8D9]">Thao tác</th>
+                                <th class="bg-[#B2E8D9] py-5">STT</th>
+                                <th class="bg-[#B2E8D9] py-5">Tên sản phẩm</th>
+                                <th class="bg-[#B2E8D9] py-5">Image</th>
+                                <th class="bg-[#B2E8D9] py-5">Thể loại</th>
+                                <th class="bg-[#B2E8D9] py-5">giá gốc</th>
+                                <th class="bg-[#B2E8D9] py-5">Giá giảm</th>
+                                <th class="bg-[#B2E8D9] py-5">Thao tác</th>
                             </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 dark:divide-dark-border">
-                            @foreach($listproduct as $list)
-                                <tr>
+                            @foreach($listproduct as $index => $list)
+                                <tr class="d-flex justify-content-center text-center">
+                                    <td>{{$index+1}}</td>
                                     <td>{{$list->name_product}}</td>
-                                    <td>{{$list->categor}}</td>
-                                    <td>{{$list->name_product}}</td>
-                                    <td>{{$list->name_product}}</td>
-                                    <td>{{$list->name_product}}</td>
-                                    <td>$320,800</td>
+                                    <td>{{$list->image}}</td>
+                                    <td>{{$list->category->name}}</td>
+                                    <td>{{$list->price}}</td>
+                                    <td>{{$list->price_sale == null ? 'chưa có' : $list->price_sale  }}</td>
+                                    <td style="align-content:center ">
+                                        <a class="btn btn-success" href="{{route('editproduct',$list->id)}}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <form action="{{route('deleteproduct',$list->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn-icon btn-danger-icon-light ">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
-
                             </tbody>
                         </table>
+                        {{$listproduct->links()}}
                     </div>
                 </div>
             </div>

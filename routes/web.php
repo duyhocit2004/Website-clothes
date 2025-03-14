@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ColorController;
+use App\Http\Controllers\admin\DashBoardController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\homeController;
@@ -29,19 +30,23 @@ Route::post('Postlogin', [AuthController::class, 'login'])->name('login');
 Route::get('fromregister', [AuthController::class, 'fromregister'])->name('fromregister');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 
-Route::get('logout', [AuthController::class, 'logout']);
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::prefix('admin')->middleware('auth.admin')->group(function(){
 
     Route::prefix('dashboard')->group(function(){
-        Route::get('/',[ProductController::class,'index'])->name('listdashboard');
+        Route::get('/',[DashBoardController::class,'index'])->name('listdashboard');
 
     });
     //Sản phẩm
     Route::prefix('product')->group(function(){
         Route::get('/',[ProductController::class,'index'])->name('listproduct');
         Route::get('/create',[ProductController::class,'create'])->name('createproduct');
+        Route::post('/store',[ProductController::class,'store'])->name('storeproduct');
+        Route::get('/edit/{id}',[ProductController::class,'edit'])->name('editproduct');
+        Route::post('/update/{id}',[ProductController::class,'update'])->name('updateproduct');
+        Route::get('/delete/{id}',[ProductController::class,'delete'])->name('deleteproduct');
     });
 
     //thể loại

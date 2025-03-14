@@ -6,7 +6,7 @@ use App\Models\productModel;
 class productService implements IproductService {
 
     public function getProducts(){
-        return productModel::query()->get();
+        return productModel::query()->paginate(5);
     }
 
     public function getProduct($id){

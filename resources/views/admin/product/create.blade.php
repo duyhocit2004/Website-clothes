@@ -7,77 +7,41 @@
                 <!-- Start Course Information -->
                 <div class="col-span-full lg:col-span-7 card">
                     <div class="p-1.5">
-                        <h6 class="card-title">Add new course</h6>
+                        <h6 class="card-title">Thêm sản phẩm </h6>
                         <div class="mt-7 pt-0.5">
                             <div class="grid grid-cols-2 gap-x-4 gap-y-5">
                                 <div class="col-span-full xl:col-auto leading-none">
-                                    <label for="courseTitle" class="form-label">How about a course title</label>
-                                    <input type="text" name="" id="courseTitle" placeholder="Course Title" class="form-input" required>
-                                </div>
-                                <div class="col-span-full xl:col-auto leading-none">
-                                    <label for="coursePrice" class="form-label">Course price</label>
-                                    <input type="number" id="coursePrice" placeholder="$200.00" class="form-input" required>
+                                    <label for="courseTitle" class="form-label">Tên sản phẩm </label>
+                                    <input type="text" name="name_product" id="courseTitle" placeholder="áo dài truyền thống" class="form-input" required>
                                 </div>
                                 <div class="col-span-full xl:col-auto leading-none">
                                     <label class="form-label">Courses category</label>
                                     <select class=" form-input singleSelect">
-                                        <option selected disabled>Select category</option>
-{{--                                        @foreach()--}}
+                                            @foreach($listCategory as $cate)
+                                                <option value="{{$cate->id}}">{{$cate->name}}</option>
+                                            @endforeach
+                                    </select>
+                                </div>
 
-{{--                                        @endforeach--}}
-                                    </select>
+                                <div class="col-span-full xl:col-auto leading-none">
+                                    <label for="price" class="form-label">Giá sản phẩm</label>
+                                    <input type="number" name="price" id="coursePrice" placeholder="$200.00" class="form-input" required>
                                 </div>
                                 <div class="col-span-full xl:col-auto leading-none">
-                                    <label class="form-label">Courses category</label>
-                                    <select class=" form-input singleSelect">
-                                        <option selected disabled>Select category</option>
-                                        <option value="val">Science</option>
-                                        <option value="val">Mathematics</option>
-                                        <option value="val">Engineering</option>
-                                        <option value="val">Humanities</option>
-                                        <option value="val">Social Sciences</option>
-                                        <option value="val">Business</option>
-                                        <option value="val">Computer Science</option>
-                                        <option value="val">Arts</option>
-                                        <option value="val">Health Sciences</option>
-                                        <option value="val">Law</option>
-                                    </select>
-                                </div>
-                                <div class="col-span-full xl:col-auto leading-none">
-                                    <label for="courseInstructor" class="form-label">Instructor</label>
-                                    <input type="text" id="courseInstructor" placeholder="Jhone Doe" class="form-input" required>
-                                </div>
-                                <div class="col-span-full xl:col-auto leading-none">
-                                    <label class="form-label">Courses Type</label>
-                                    <select class="form-input singleSelect">
-                                        <option value="create-a-new">Create a New</option>
-                                        <option value="details-here">Details Here</option>
-                                        <option value="default-option">Default Option</option>
-                                        <option value="new-chart">New Chart</option>
-                                    </select>
-                                </div>
-                                <div class="col-span-full xl:col-auto leading-none">
-                                    <label for="courseDuration" class="form-label">Course duration</label>
-                                    <input type="text" id="courseDuration" placeholder="2h 30m" class="form-input" required>
-                                </div>
-                                <div class="col-span-full xl:col-auto leading-none">
-                                    <label class="form-label">Courses Type</label>
-                                    <select class="form-input singleSelect">
-                                        <option value="create-a-new">Create a New</option>
-                                        <option value="details-here">Details Here</option>
-                                        <option value="default-option">Default Option</option>
-                                        <option value="new-chart">New Chart</option>
-                                    </select>
+                                    <label for="price_sale" class="form-label">Giá giảm(không bắt buộc)</label>
+                                    <input type="number" id="price_sale" placeholder="$100.00" class="form-input" >
                                 </div>
 
                                 <div class="col-span-full">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea id="description" rows="8" class="summernote form-input"></textarea>
-                                    <div class="flex items-center gap-2 mt-3.5">
-                                        <input type="checkbox" name="agreeTermCondition" id="agreeTermCondition" class="accent-primary-500">
-                                        <label for="agreeTermCondition" class="text-xs leading-none text-gray-500 dark:text-dark-text select-none">I am totally agree with your term & condition</label>
-                                    </div>
+                                    <textarea id="description"  class="summernote form-input"></textarea>
                                 </div>
+
+                                <div class="col-span-full">
+                                    <label for="content" class="form-label">content</label>
+                                    <textarea id="content"  class="summernote form-input"></textarea>
+                                </div>
+
                             </div>
                         </div>
                     </div>

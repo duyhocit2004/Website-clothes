@@ -1,12 +1,12 @@
 <?php
 namespace App\Repositories;
 
-use App\Service\product\sizeService;
+use App\Service\product\productService;
 
 class ProductRepositories {
     public $productService;
 
-    public function __construct(sizeService $productService) {
+    public function __construct(productService $productService) {
         $this->productService = $productService;
     }
     public function getProduct(){
