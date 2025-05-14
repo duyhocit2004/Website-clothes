@@ -10,6 +10,10 @@ class SizeRepositories{
         $this->SizeService = $SizeService;
     }
 
+    public function getAllSize(){
+        return $this->SizeService->getAllSize();
+    }
+
     public function getSize(){
         return $this->SizeService->getSize();
     }

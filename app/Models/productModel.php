@@ -10,6 +10,7 @@ class productModel extends Model
     use HasFactory;
 
     protected $table = 'product';
+
     protected $fillable = [
         'SKU',
         'name_product',
@@ -17,13 +18,16 @@ class productModel extends Model
         'content',
         'description',
         'price',
-        'image',
+        'price_sale',
+        'image'
     ];
+
     public function category()
     {
         return $this->belongsTo(categoryModel::class, 'category_id', 'id');
     }
-    public function ProductVariant(){
+    public function ProductVariant()
+    {
         return $this->hasMany(ProductVariant::class, 'product_id', 'id');
     }
 }

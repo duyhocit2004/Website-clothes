@@ -45,8 +45,8 @@ Route::prefix('admin')->middleware('auth.admin')->group(function(){
         Route::get('/create',[ProductController::class,'create'])->name('createproduct');
         Route::post('/store',[ProductController::class,'store'])->name('storeproduct');
         Route::get('/edit/{id}',[ProductController::class,'edit'])->name('editproduct');
-        Route::post('/update/{id}',[ProductController::class,'update'])->name('updateproduct');
-        Route::get('/delete/{id}',[ProductController::class,'delete'])->name('deleteproduct');
+        Route::put('/update/{id}',[ProductController::class,'update'])->name('updateproduct');
+        Route::delete('/delete/{id}',[ProductController::class,'destroy'])->name('deleteproduct');
     });
 
     //thể loại
