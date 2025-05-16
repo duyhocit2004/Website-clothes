@@ -9,41 +9,56 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function Fromlogin(){
+    // Form đăng nhập
+    public function Fromlogin()
+    {
         return view('admin.auth.login');
     }
-    public function login(Request $request){
 
-        if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])){
+    // Xử lý đăng nhập
+    public function login(Request $request)
+    {
+
+        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
             return redirect()->intended('admin/product');
-        }else{
+        } else {
             return redirect('login');
         }
     }
-    public function fromregister(){
+
+    // Form đăng ký
+    public function fromregister()
+    {
         return view('admin.auth.register');
     }
-    public function register(Request $request){
-//    dd($request);
+
+    // Đăng ký
+    public function register(Request $request)
+    {
+        //    dd($request);
         $params = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:6',
-        ],[
+        ], [
             'name.required' => 'bạn chưa nhập tên người dùng',
             'email.required' => 'bạn chưa nhập email',
-            'email.email'=>'dữ liệu bắt buộc phải nhập là email',
-            'password.required'=>'bạn chưa nhập mật khẩu',
-            'password.min'=>'số lượng mật khẩu phải lớn hơn 6 ký tự'
+            'email.email' => 'dữ liệu bắt buộc phải nhập là email',
+            'password.required' => 'bạn chưa nhập mật khẩu',
+            'password.min' => 'số lượng mật khẩu phải lớn hơn 6 ký tự'
         ]);
-//        $params = $request->all();
+        //        $params = $request->all();
 
         User::create($params);
 
         return redirect('login');
     }
-    public function logout(){
+
+    // Đăng xuất
+    public function logout()
+    {
         Auth::logout();
+    
         return redirect('login');
     }
 }

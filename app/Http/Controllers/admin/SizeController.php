@@ -4,83 +4,72 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Repositories\SizeRepositories;
 
 class SizeController extends Controller
 {
     public $size;
-    public function __construct(SizeRepositories $size){
+
+    public function __construct(SizeRepositories $size)
+    {
         $this->size = $size;
     }
-    /**
-     * Display a listing of the resource.
-     */
+
+    // Danh sách size
     public function index()
     {
         $listSize = $this->size->getSize();
-        return view('admin.size.list',compact('listSize'));
+
+        return view('admin.size.list', compact('listSize'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Form thêm size
     public function create()
     {
         return view('admin.size.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Thêm size
     public function store(Request $request)
     {
         $param = $request->validate([
             'name' => 'required',
-        ],[
-            'name.required'=>'Bạn chưa nhập thể loại'
+        ], [
+            'name.required' => 'Bạn chưa nhập thể loại'
         ]);
+
         $this->size->createSize($param);
-        return redirect()->route('Listsize')->with('success','Thêm kích cỡ thành công');
+
+        return redirect()->route('Listsize')->with('success', 'Thêm kích cỡ thành công');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // Form sửa size
     public function edit(string $id)
     {
         $size = $this->size->getSizeId($id);
-        return view('admin.size.edit',compact('size'));
+        
+        return view('admin.size.edit', compact('size'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Sửa size
     public function update(Request $request, string $id)
     {
         $param = $request->validate([
             'name' => 'required',
-        ],[
-            'name.required'=>'Bạn chưa nhập thể loại'
+        ], [
+            'name.required' => 'Bạn chưa nhập thể loại'
         ]);
-        $this->size->updateSize($id,$param);
-        return redirect()->route('listsize')->with('success','sửa kích cỡ thành công');
+
+        $this->size->updateSize($id, $param);
+
+        return redirect()->route('listsize')->with('success', 'sửa kích cỡ thành công');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   // Xóa size
     public function destroy(string $id)
     {
         $this->size->deleteSize($id);
-        return redirect()->route('listsize')->with('success','xóa kích cỡ thành công');
+
+        return redirect()->route('listsize')->with('success', 'xóa kích cỡ thành công');
     }
 }
